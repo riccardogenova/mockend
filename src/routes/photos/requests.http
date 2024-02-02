@@ -1,0 +1,5 @@
+### PHOTO LIST
+GET http://localhost:8080/api/photos
+
+### PHOTO DETAIl
+GET http://localhost:8080/api/photos/1

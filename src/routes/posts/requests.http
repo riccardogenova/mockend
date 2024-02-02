@@ -1,0 +1,6 @@
+
+### POST LIST
+GET http://localhost:8080/api/posts
+### POST DETAIL
+GET http://localhost:8080/api/posts/1
+

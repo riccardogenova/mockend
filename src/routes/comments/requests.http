@@ -1,0 +1,7 @@
+### COMMENT LIST
+GET http://localhost:8080/api/comments
+
+### COMMENT DETAIl
+GET http://localhost:8080/api/comments/1
+
+

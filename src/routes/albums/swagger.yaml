@@ -1,0 +1,58 @@
+swagger: '2.0'
+info:
+  description: "API per interagire con la risorsa 'albums'."
+  version: '1.0.0'
+  title: 'Albums API'
+
+host: 'http://localhost:8080'
+basePath: '/'
+
+paths:
+  /api/albums:
+    get:
+      tags:
+        - 'Albums'
+      summary: 'Ottieni tutti gli album'
+      description: 'Restituisce un elenco di tutti gli album.'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Un array di album.'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Album'
+
+  /api/albums/{id}:
+    get:
+      tags:
+        - 'Albums'
+      summary: 'Ottieni un album specifico'
+      description: 'Restituisce un album dato il suo ID.'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        200:
+          description: 'Un singolo album.'
+          schema:
+            $ref: '#/definitions/Album'
+        404:
+          description: 'Album non trovato.'
+
+definitions:
+  Album:
+    type: 'object'
+    properties:
+      userId:
+        type: 'integer'
+      id:
+        type: 'integer'
+      title:
+        type: 'string'

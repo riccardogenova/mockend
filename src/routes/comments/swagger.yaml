@@ -1,0 +1,62 @@
+swagger: '2.0'
+info:
+  description: "API per interagire con la risorsa 'comments'."
+  version: '1.0.0'
+  title: 'Comments API'
+
+host: 'http://localhost:8080'
+basePath: '/'
+
+paths:
+  /api/comments:
+    get:
+      tags:
+        - 'Comments'
+      summary: 'Ottieni tutti i commenti'
+      description: 'Restituisce un elenco di tutti i commenti.'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Un array di commenti.'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Comment'
+
+  /api/comments/{id}:
+    get:
+      tags:
+        - 'Comments'
+      summary: 'Ottieni un commento specifico'
+      description: 'Restituisce un commento dato il suo ID.'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        200:
+          description: 'Un singolo commento.'
+          schema:
+            $ref: '#/definitions/Comment'
+        404:
+          description: 'Commento non trovato.'
+
+definitions:
+  Comment:
+    type: 'object'
+    properties:
+      postId:
+        type: 'integer'
+      id:
+        type: 'integer'
+      name:
+        type: 'string'
+      email:
+        type: 'string'
+      body:
+        type: 'string'

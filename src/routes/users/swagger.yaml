@@ -1,0 +1,91 @@
+swagger: '2.0'
+info:
+  description: "API per interagire con la risorsa 'users'."
+  version: '1.0.0'
+  title: 'Users API'
+
+host: 'http://localhost:8080'
+basePath: '/'
+
+paths:
+  /api/users:
+    get:
+      tags:
+        - 'Users'
+      summary: 'Ottieni tutti gli utenti'
+      description: 'Restituisce un elenco di tutti gli utenti.'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Un array di utenti.'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/User'
+
+  /api/users/{id}:
+    get:
+      tags:
+        - 'Users'
+      summary: 'Ottieni un utente specifico'
+      description: 'Restituisce un utente dato il suo ID.'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        200:
+          description: 'Un singolo utente.'
+          schema:
+            $ref: '#/definitions/User'
+        404:
+          description: 'Utente non trovato.'
+
+definitions:
+  User:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+      name:
+        type: 'string'
+      username:
+        type: 'string'
+      email:
+        type: 'string'
+      address:
+        type: 'object'
+        properties:
+          street:
+            type: 'string'
+          suite:
+            type: 'string'
+          city:
+            type: 'string'
+          zipcode:
+            type: 'string'
+          geo:
+            type: 'object'
+            properties:
+              lat:
+                type: 'string'
+              lng:
+                type: 'string'
+      phone:
+        type: 'string'
+      website:
+        type: 'string'
+      company:
+        type: 'object'
+        properties:
+          name:
+            type: 'string'
+          catchPhrase:
+            type: 'string'
+          bs:
+            type: 'string'

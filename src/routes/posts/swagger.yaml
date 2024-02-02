@@ -1,0 +1,60 @@
+swagger: '2.0'
+info:
+  description: "API per interagire con la risorsa 'posts'."
+  version: '1.0.0'
+  title: 'Posts API'
+
+host: 'http://localhost:8080'
+basePath: '/'
+
+paths:
+  /api/posts:
+    get:
+      tags:
+        - 'Posts'
+      summary: 'Ottieni tutti i post'
+      description: 'Restituisce un elenco di tutti i post.'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Un array di post.'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Post'
+
+  /api/posts/{id}:
+    get:
+      tags:
+        - 'Posts'
+      summary: 'Ottieni un post specifico'
+      description: 'Restituisce un post dato il suo ID.'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        200:
+          description: 'Un singolo post.'
+          schema:
+            $ref: '#/definitions/Post'
+        404:
+          description: 'Post non trovato.'
+
+definitions:
+  Post:
+    type: 'object'
+    properties:
+      userId:
+        type: 'integer'
+      id:
+        type: 'integer'
+      title:
+        type: 'string'
+      body:
+        type: 'string'

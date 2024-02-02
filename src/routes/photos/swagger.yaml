@@ -1,0 +1,62 @@
+swagger: '2.0'
+info:
+  description: "API per interagire con la risorsa 'photos'."
+  version: '1.0.0'
+  title: 'Photos API'
+
+host: 'http://localhost:8080'
+basePath: '/'
+
+paths:
+  /api/photos:
+    get:
+      tags:
+        - 'Photos'
+      summary: 'Ottieni tutte le foto'
+      description: 'Restituisce un elenco di tutte le foto.'
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: 'Un array di foto.'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Photo'
+
+  /api/photos/{id}:
+    get:
+      tags:
+        - 'Photos'
+      summary: 'Ottieni una foto specifica'
+      description: 'Restituisce una foto dato il suo ID.'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        200:
+          description: 'Una singola foto.'
+          schema:
+            $ref: '#/definitions/Photo'
+        404:
+          description: 'Foto non trovata.'
+
+definitions:
+  Photo:
+    type: 'object'
+    properties:
+      albumId:
+        type: 'integer'
+      id:
+        type: 'integer'
+      title:
+        type: 'string'
+      url:
+        type: 'string'
+      thumbnailUrl:
+        type: 'string'
