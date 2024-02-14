@@ -6,8 +6,8 @@
   "scripts": {
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|css|html|json)\" --write",
     "build": "tsc",
-    "start": "tsc && npm run build:swagger && node dist/index.js",
-    "build:swagger": "swagger-cli bundle -o bundled.yaml -t yaml swagger.yaml"
+    "start": "tsc && node dist/index.js",
+    "deploy": "railway up"
   },
   "author": "Riccardo Genova",
   "license": "ISC",
