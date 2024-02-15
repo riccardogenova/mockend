@@ -4,7 +4,7 @@ info:
   version: '1.0.0'
   title: 'Posts API'
 
-host: 'http://localhost:8080'
+host: 'http://localhost:3000'
 basePath: '/'
 
 paths:

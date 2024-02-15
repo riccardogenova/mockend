@@ -9,12 +9,12 @@ const express_1 = __importDefault(require("express"));
 exports.routerUsers = express_1.default.Router();
 exports.routerUsers.get('/', async (req, res) => {
     const response = await axios_1.default.get('https://jsonplaceholder.typicode.com/users');
-    const { data } = response;
+    const data = response.data;
     res.json(data);
 });
 exports.routerUsers.get('/:id', async (req, res) => {
     const { id } = req.params;
     const response = await axios_1.default.get(`https://jsonplaceholder.typicode.com/users/${id}`);
-    const { data } = response;
+    const data = response.data;
     res.json(data);
 });

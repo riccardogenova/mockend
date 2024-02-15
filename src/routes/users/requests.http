@@ -1,6 +1,6 @@
 
 ### USER LIST
-GET http://localhost:8080/api/users
+GET http://localhost:3000/api/users
 
 ### USER DETAIL
-GET http://localhost:8080/api/users/1
+GET http://localhost:3000/api/users/1

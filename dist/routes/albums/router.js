@@ -9,12 +9,12 @@ const express_1 = __importDefault(require("express"));
 exports.routerAlbums = express_1.default.Router();
 exports.routerAlbums.get('/', async (req, res) => {
     const response = await axios_1.default.get('https://jsonplaceholder.typicode.com/albums');
-    const { data } = response;
-    res.json(data);
+    const albumList = response.data;
+    res.json(albumList);
 });
 exports.routerAlbums.get('/:id', async (req, res) => {
     const { id } = req.params;
     const response = await axios_1.default.get(`https://jsonplaceholder.typicode.com/albums/${id}`);
-    const { data } = response;
-    res.json(data);
+    const album = response.data;
+    res.json(album);
 });

@@ -9,12 +9,12 @@ const express_1 = __importDefault(require("express"));
 exports.routerComments = express_1.default.Router();
 exports.routerComments.get('/', async (req, res) => {
     const response = await axios_1.default.get('https://jsonplaceholder.typicode.com/comments');
-    const { data } = response;
+    const data = response.data;
     res.json(data);
 });
 exports.routerComments.get('/:id', async (req, res) => {
     const { id } = req.params;
     const response = await axios_1.default.get(`https://jsonplaceholder.typicode.com/comments/${id}`);
-    const { data } = response;
+    const data = response.data;
     res.json(data);
 });

@@ -1,7 +1,7 @@
 ### COMMENT LIST
-GET http://localhost:8080/api/comments
+GET http://localhost:3000/api/comments
 
 ### COMMENT DETAIl
-GET http://localhost:8080/api/comments/1
+GET http://localhost:3000/api/comments/1
 
 

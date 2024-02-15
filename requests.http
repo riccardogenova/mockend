@@ -1,0 +1,7 @@
+
+
+### ALBUM LIST
+GET http://localhost:3000/api/albums
+
+### ALBUM DETAIl
+GET http://localhost:3000/api/albums/1
