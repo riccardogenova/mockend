@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import express, { Request, Response } from 'express';
 import YAML from 'yamljs';
+import cors from 'cors';
 
 import swaggerUi from 'swagger-ui-express';
 import { routerUsers } from './routes/users/router';
@@ -23,6 +24,17 @@ swaggerDocument.paths = {
   ...YAML.load('src/routes/users/swagger.yaml').paths,
 };
 
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET',
+    // allowedHeaders: ['Content-Type', 'Authorization'],
+    // credentials: true,
+    optionsSuccessStatus: 200,
+  }),
+);
+app.use(express.json());
+
 app.use('/api/users', routerUsers);
 app.use('/api/posts', routerPosts);
 app.use('/api/comments', routerComments);
@@ -30,7 +42,6 @@ app.use('/api/albums', routerAlbums);
 app.use('/api/photos', routerPhotos);
 app.use('/api/products', routerProducts);
 
-app.use(express.json());
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (req: Request, res: Response) => {
