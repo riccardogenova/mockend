@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import express, { Request, Response } from 'express';
 import YAML from 'yamljs';
 import cors from 'cors';
+import fs from 'fs';
 
 import swaggerUi from 'swagger-ui-express';
 import { routerUsers } from './routes/users/router';
@@ -28,12 +29,11 @@ app.use(
   cors({
     origin: 'http://localhost:3000',
     methods: 'GET',
-    // allowedHeaders: ['Content-Type', 'Authorization'],
-    // credentials: true,
     optionsSuccessStatus: 200,
   }),
 );
 app.use(express.json());
+app.use(express.static('public'));
 
 app.use('/api/users', routerUsers);
 app.use('/api/posts', routerPosts);
@@ -45,7 +45,7 @@ app.use('/api/products', routerProducts);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('<h1>Hello World!<h1>');
+  res.sendFile(__dirname + '/template/index.html');
 });
 
 app.listen(PORT, () => {
